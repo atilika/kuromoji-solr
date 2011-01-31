@@ -1,0 +1,8 @@
+1. Put kuromoji and kuromoji-solor in lib directory.
+
+2. Add below to schema.xml.
+<fieldType name="text_kuromoji" class="solr.TextField">
+  <analyzer>
+    <tokenizer class="org.atilika.kuromoji.solr.KuromojiTokenizerFactory" mode="search" user-dictionary=""/>
+  </analyzer>
+</fieldType>
