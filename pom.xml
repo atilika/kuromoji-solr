@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.atilika.kuromoji</groupId>
 	<artifactId>kuromoji-solr</artifactId>
-	<version>0.1.0</version>
+	<version>0.5.0</version>
 	<packaging>jar</packaging>
 
 	<name>kuromoji-solr</name>
@@ -16,12 +16,36 @@
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
 	</properties>
+
 	<repositories>
 		<repository>
 			<id>ATILIKA dependencies</id>
 			<url>http://www.atilika.org/nexus/content/repositories/atilika</url>
 		</repository>
 	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2-beta-2</version>
+				<executions>
+					<execution>
+						<id>create-project-bundle</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>dist/assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencies>
 		<dependency>
@@ -37,12 +61,12 @@
 			<type>jar</type>
 			<scope>provided</scope>
 		</dependency>
-	    <dependency>
-	    	<groupId>org.atilika.kuromoji</groupId>
-	    	<artifactId>kuromoji</artifactId>
-	    	<version>0.7.3</version>
-	    	<type>jar</type>
- 			<scope>provided</scope>
-	   	</dependency>
+		<dependency>
+			<groupId>org.atilika.kuromoji</groupId>
+			<artifactId>kuromoji</artifactId>
+			<version>0.7.3</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 </project>
