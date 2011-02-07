@@ -37,7 +37,11 @@ public class KuromojiTokenizerFactory extends BaseTokenizerFactory{
 		this.args = args;
 		Mode mode = args.get(MODE) != null ? Mode.valueOf(args.get(MODE).toUpperCase()) : Mode.NORMAL;
 		String userDictionaryPath = args.get(USER_DICT_PATH);
-		this.tokenizer = org.atilika.kuromoji.Tokenizer.builder().mode(mode).userDictionary(userDictionaryPath).build();
+		try {
+			this.tokenizer = org.atilika.kuromoji.Tokenizer.builder().mode(mode).userDictionary(userDictionaryPath).build();
+		} catch (Exception e) {
+			throw new SolrException(SolrException.ErrorCode.SERVER_ERROR, e);
+		}
 	}
 
 	@Override
