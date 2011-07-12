@@ -12,12 +12,12 @@ Step 1.  Download and unpack Apache Solr
 Solr binary distributions are available http://lucene.apache.org/solr/ --
 see Resources > Downloads, and find a mirror near you.
 
-In the below we are using Solr 1.4.1 on UNIX using .tgz packaging.  Use
+In the below we are using Solr 3.3.0 on UNIX using .tgz packaging.  Use
 unzip instead of tar if you are on Windows or use zip on UNIX.
 
 Unpack Solr as follows:
 
-  % tar zxvf apache-solr-1.4.1.tgz
+  % tar zxvf apache-solr-3.3.0.tgz
 
 
 Step 2.  Copy Kuromoji JARs to Apache Solr's lib directory
@@ -26,8 +26,8 @@ Step 2.  Copy Kuromoji JARs to Apache Solr's lib directory
 Copy Kuromoji JARS to Solr's lib directory so they can be loaded by Solr
 on startup.  In the below we are using the "example" Solr setup.
 
-  % mkdir apache-solr-1.4.1/example/solr/lib # Unless it exists already
-  % cp lib/kuromoji* apache-solr-1.4.1/example/solr/lib
+  % mkdir apache-solr-3.3.0/example/solr/lib # Unless it exists already
+  % cp lib/kuromoji* apache-solr-3.3.0/example/solr/lib
 
 The latter step should copy two JAR files to Solr's lib directory
 
@@ -40,11 +40,11 @@ Japanese text.  These are the fields that will be analyzed by Kuromoji.
 
 Edit file
 
-  apache-solr-1.4.1/example/solr/conf/schema.xml
+  apache-solr-3.3.0/example/solr/conf/schema.xml
 
 and then add these lines within inside the <types> tag
 
-  <fieldType name="text_japanese" class="solr.TextField">
+  <fieldType name="text_ja" class="solr.TextField">
     <analyzer>
       <tokenizer class="org.atilika.kuromoji.solr.KuromojiTokenizerFactory"
                  mode="search"
@@ -67,7 +67,7 @@ have Kuromoji to morphological analysis on these fields.
 
 For example
 
- <field name="body" type="text_japanese" indexed="true" stored="true"/>
+ <field name="body" type="text_ja" indexed="true" stored="true"/>
 
 
 Step 4.  Start Apache Solr
@@ -75,7 +75,7 @@ Step 4.  Start Apache Solr
 
 Start the "example" Solr using
 
-  % cd apache-solr-1.4.1/example/
+  % cd apache-solr-3.3.0/example/
   % java -jar start.jar
 
 Apache Solr will now start and have Kuromoji integrated
